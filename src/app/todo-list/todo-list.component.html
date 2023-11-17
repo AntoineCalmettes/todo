@@ -2,17 +2,19 @@
     <div class="bg-gray-900 rounded-md shadow-lg p-6 text-white">
       <h1 class="text-3xl font-bold mb-6">Ma Todo-List</h1>
   
-      <form (submit)="addTask(taskInput.value, $event)" class="mb-4">
+      <form (ngSubmit)="addNewTask()" class="mb-4">
         <div class="flex">
-          <input type="text" #taskInput class="border rounded-l py-2 px-4 w-full bg-gray-800 text-white" placeholder="Ajouter une tâche">
+          <input type="text" name="title" [(ngModel)]="newTask.title"  #taskInput class="border rounded-l py-2 px-4 w-full bg-gray-800 text-white" placeholder="Ajouter une tâche">
+          <input type="text" name="description" [(ngModel)]="newTask.description"  class="border rounded-l py-2 px-4 w-full bg-gray-800 text-white" placeholder="Description">
           <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-r" type="submit">Ajouter</button>
         </div>
       </form>
   
       <ul>
         <li *ngFor="let task of tasks" class="flex justify-between items-center border-b py-3">
-          <span>{{ task }}</span>
-          <button class="text-red-500 hover:text-red-700 font-semibold" (click)="deleteTask(task)">Supprimer</button>
+          <span>{{ task.title }}</span>
+          <p>{{ task.description }}</p>
+          <button class="text-red-500 hover:text-red-700 font-semibold" (click)="deleteTask(task.id)">Supprimer</button>
         </li>
       </ul>
   
